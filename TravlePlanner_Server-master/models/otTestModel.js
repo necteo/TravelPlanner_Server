@@ -1,11 +1,8 @@
 const mongoose = require("mongoose");
 const { Schema } = mongoose;
 
-const OtTestSchema = new Schema(
-  {
-    str: String,
-  },
-  { timestamps: true }
-);
+const OtTestSchema = new Schema({
+  name: String,
+});
 const OtTest = mongoose.model("OtTest", OtTestSchema);
 module.exports = { OtTest };
