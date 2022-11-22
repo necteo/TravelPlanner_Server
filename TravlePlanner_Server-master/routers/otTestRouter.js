@@ -3,6 +3,7 @@ const router = express.Router();
 const { OtTest } = require("../models/otTestModel");
 
 let data = OtTest({ name: "Quack" });
+let arrayTest = [];
 
 router.post("/OtTest/start", async (req, res) => {
   const startData = data;
