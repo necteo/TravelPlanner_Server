@@ -1,7 +1,7 @@
 const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
-const hostname = "192.168.0.5";
+const hostname = "192.168.0.6";
 const port = 3000;
 const DB_URI = "mongodb://127.0.0.1:27017/testdb";
 
