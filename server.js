@@ -6,12 +6,14 @@ const port = 3000;
 const DB_URI = "mongodb://127.0.0.1:27017/testdb";
 
 const otTestRouter = require("./routers/otTestRouter");
-
+const mainRouter = require("./routers/mainRouter");
+const travelGraphRouter = require("./routers/travelGraphRouter");
 const server = async () => {
   try {
     await mongoose.connect(DB_URI);
     app.use(express.json());
-    app.use(otTestRouter);
+    app.use(mainRouter);
+    app.use(travelGraphRouter);
     app.listen(port, hostname, function () {
       console.log("server is running");
     });

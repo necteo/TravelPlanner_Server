@@ -2,13 +2,13 @@ const mongoose = require("mongoose");
 const { Schema } = mongoose;
 
 const PlanDetailSchema = new Schema({
-  plan_id: Number,
-  trip_id: Number,
+  plan_id: { type: Number, required: true },
+  trip_id: { type: Number, required: true },
   plan: {
-    place_id: Number,
-    date: Date,
-    startTime: Number,
-    endTime: Number,
+    place_id: { type: Number, required: true },
+    date: { type: Number, required: true },
+    startTime: { type: Number, required: true },
+    endTime: { type: Number, required: true },
     details: String,
   },
 });
