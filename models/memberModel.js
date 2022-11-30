@@ -2,8 +2,8 @@ const mongoose = require("mongoose");
 const { Schema } = mongoose;
 
 const MemberSchema = new Schema({
-  trip_id: Number,
-  member_id: String,
+  trip_id: { type: Number, required: true },
+  member_id: { type: String, required: true, unique: true },
   host: Boolean,
 });
 const Member = mongoose.model("Member", MemberSchema);
