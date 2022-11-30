@@ -15,5 +15,13 @@
   "main": "server.js",
   "author": "",
   "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/necteo/TravelPlanner_Server.git"
+  },
+  "bugs": {
+    "url": "https://github.com/necteo/TravelPlanner_Server/issues"
+  },
+  "homepage": "https://github.com/necteo/TravelPlanner_Server#readme",
   "description": ""
 }
