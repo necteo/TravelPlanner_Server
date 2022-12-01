@@ -54,5 +54,24 @@ router.post("/Main/create", async (req, res) => {
   await hostMember.save();
   return res.send(newTrip);
 });
+router.post("/Main/create/code", async (req, res) => {
+  var newTrip = await Trip.find({}).find({ trip_id: req.body.trip_id });
+  //tirp 있나 확인
+
+  newTrip.name = req.body.name;
+  newTrip.trip_id = (Math.random() * 10000).toFixed();
+  newTrip.write_code = (Math.random() * 1000).toFixed() + newTrip.trip_id;
+  newTrip.share_code = (Math.random() * 1000).toFixed() + newTrip.trip_id;
+  if (newTrip.write_code == newTrip.share_code) {
+    newTrip.share_code = (Math.random() * 1000).toFixed() + a;
+  }
+  await newTrip.save();
+  var hostMember = new Member();
+  hostMember.trip_id = newTrip.trip_id;
+  hostMember.member_id = req.body.member_id;
+  hostMember.host = true;
+  await hostMember.save();
+  return res.send(newTrip);
+});
 
 module.exports = router;
