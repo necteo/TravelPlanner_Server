@@ -2,10 +2,10 @@ const mongoose = require("mongoose");
 const { Schema } = mongoose;
 
 const VoteSchema = new Schema({
+  trip_id: { type: Number, required: true },
   plan_id: { type: Number, required: true },
-  members: {
-    member_id: { type: String, required: true, unique: true },
-  },
+  //배열로
+  member: String,
 });
 const Vote = mongoose.model("Vote", VoteSchema);
 module.exports = { Vote };
