@@ -13,8 +13,7 @@ router.post("/PlanDetail/read", async (req, res) => {
 router.post("/PlanDetail/create", async (req, res) => {
   var joinPlace = await Place.find({}).find({ trip_id: req.body.trip_id });
 
-  //joinPlace에 값이 있는지 확인
-  if (ture) {
+  if (joinPlace.length == 0) {
     return res.send();
   } else {
     var newPlanDetail = new PlanDetail();

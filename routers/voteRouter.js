@@ -10,8 +10,8 @@ router.post("/Vote/read", async (req, res) => {
 
 router.post("/Vote/create", async (req, res) => {
   var findPlan = await PlanDetail.find({}).find({ plan_id: req.body.plan_id });
-  //joinTrip에 값이 있는지 확인
-  if (ture) {
+
+  if (findPlan.length == 0) {
     return res.send();
   } else {
     var newPlace = new Place();
