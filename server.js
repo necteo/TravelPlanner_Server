@@ -13,7 +13,9 @@ const mainRouter = require("./routers/mainRouter");
 const travelGraphRouter = require("./routers/travelGraphRouter");
 const touristRouter = require("./routers/touristRouter");
 const voteRouter = require("./routers/voteRouter");
+
 const deleteRouter = require("./routers/deleteRouter");
+const otTest = require("./routers/OTtestRouter");
 const server = async () => {
   try {
     await mongoose.connect(DB_URI);
@@ -24,7 +26,7 @@ const server = async () => {
     app.use(voteRouter);
 
     app.use(deleteRouter);
-
+    app.use(otTest);
     app.listen(port, hostname, function () {
       console.log("server is running");
     });

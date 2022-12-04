@@ -2,6 +2,9 @@ const express = require("express");
 const { Member } = require("../models/memberModel");
 const router = express.Router();
 const { Trip } = require("../models/tripModel");
+const { Place } = require("../models/placeModel");
+const { PlanDetail } = require("../models/planDetailModel");
+const { Vote } = require("../models/VoteModel");
 
 //trip read
 router.post("/Main/trip/read", async (req, res) => {
@@ -14,6 +17,12 @@ router.post("/Main/trip/read", async (req, res) => {
   }
 
   return res.send(readtrips);
+});
+
+router.post("/Main/trip/readOne", async (req, res) => {
+  const trip = await Trip.findOne.find({ trip_id: req.body.trip_id });
+
+  return res.send(trip);
 });
 
 //member join
@@ -104,6 +113,27 @@ router.post("/Main/member/read", async (req, res) => {
   console.log(req.body);
   var readMembers = await Member.find({}).find({ trip_id: req.body.trip_id });
   return res.send(readMembers);
+});
+//trip remove
+router.post("/Main/trip/delete", async (req, res) => {
+  await Trip.deleteMany({ trip_id: req.body.trip_id });
+  await Member.deleteMany({ trip_id: req.body.trip_id });
+  await Place.deleteMany({ trip_id: req.body.trip_id });
+  await PlanDetail.deleteMany({ trip_id: req.body.trip_id });
+  const result = await Vote.deleteMany({ trip_id: req.body.trip_id });
+
+  return res.send(result);
+});
+//member remove
+router.post("/Main/member/delete", async (req, res) => {
+  console.log("deleteMember" + req.body.member_id);
+
+  const result = await Member.deleteOne({
+    member_id: req.body.member_id,
+    trip_id: req.body.trip_id,
+  });
+
+  return res.send(result);
 });
 
 module.exports = router;
