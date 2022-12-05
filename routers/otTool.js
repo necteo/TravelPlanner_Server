@@ -1,6 +1,7 @@
 module.exports = class OtTool {
-  constructor() {
+  constructor(name) {
     this.arr = new Array();
+    this.routerName = name;
   }
   push(id, res) {
     const i = this.check(id);
@@ -11,10 +12,11 @@ module.exports = class OtTool {
     } else {
       this.arr[i][1].push(res);
     }
-    console.log(this.arr);
+    console.log(this.routerName + " : " + this.arr);
   }
   pop(id, data) {
     const i = this.check(id);
+
     if (i != -1) {
       this.arr[i][1].forEach((e) => {
         e.send(data);

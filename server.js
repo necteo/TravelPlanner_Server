@@ -9,6 +9,7 @@ const mainRouter = require("./routers/mainRouter");
 const travelGraphRouter = require("./routers/travelGraphRouter");
 const touristRouter = require("./routers/touristRouter");
 const voteRouter = require("./routers/voteRouter");
+const destinationRouter = require("./routers/destinationRouter");
 
 const deleteRouter = require("./routers/deleteRouter");
 const otTest = require("./routers/OTtestRouter");
@@ -20,6 +21,7 @@ const server = async () => {
     app.use(touristRouter);
     app.use(travelGraphRouter);
     app.use(voteRouter);
+    app.use(destinationRouter);
 
     app.use(deleteRouter);
     app.use(otTest);
