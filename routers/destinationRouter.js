@@ -22,8 +22,6 @@ router.post("/destination/update/date", async (req, res) => {
     trip_id: req.body.trip_id,
     plan_id: req.body.plan_id,
   });
-  console.log("--------------------------------");
-  console.log(req.body.index);
 
   const arr = new Array();
   for (var i = 0; i < findPlan[0].plan.length; i++) {
