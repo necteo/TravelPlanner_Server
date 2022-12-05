@@ -2,31 +2,42 @@ const express = require("express");
 const router = express.Router();
 const { Vote } = require("../models/VoteModel");
 const { PlanDetail } = require("../models/planDetailModel");
+const OtTool = require("./otTool");
+
+const otTool = new OtTool("voteRouter");
 
 router.post("/Vote/read", async (req, res) => {
-  const places = await Place.find({}).find({ trip_id: req.body.trip_id });
-  return res.send(places);
+  const Votes = await Vote.find({}).find({
+    trip_id: req.body.trip_id,
+  });
+  return res.send(Votes);
 });
 
-router.post("/Vote/create", async (req, res) => {
-  var findPlan = await PlanDetail.find({}).find({ plan_id: req.body.plan_id });
+router.post("/Vote/voting", async (req, res) => {
+  var findVote = await Vote.find({}).find({
+    plan_id: req.body.plan_id,
+    trip_id: req.body.trip_id,
+  });
 
-  if (findPlan.length == 0) {
-    return res.send();
-  } else {
-    var newPlace = new Place();
-    newPlace.trip_id = req.body.trip_id;
-    newPlace.place_id = (Math.random() * 10000).toFixed();
-    newPlace.place.name = req.body.name;
-    newPlace.type = req.body.type;
-    newPlace.save();
-    return res.send();
+  const arr = new Array();
+  const len = findVote[0].members.length;
+  let flag = true;
+  for (let i = 0; i < len; i++) {
+    if (req.body.member_id != findVote[0].members[i]) {
+      arr.push(findVote[0].members[i]);
+    } else {
+      flag = false;
+    }
   }
+  if (flag) {
+    arr.push(req.body.member_id);
+  }
+  otTool.pop(req.body.trip_id, reqData);
+  return res.send(findVote);
 });
 
-router.post("/Vote/delete", async (req, res) => {
-  await Place.findOneAndDelete({}).find({ place_id: req.body.place_id });
-  return res.send(data);
+router.post("/Vote/change", async (req, res) => {
+  otTool.push(req.body.trip_id, res);
 });
 
 module.exports = router;
